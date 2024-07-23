@@ -1,10 +1,10 @@
 from itemadapter import ItemAdapter
 import psycopg2
-
+from bookscraper.kafka_producer import KafkaProducer  # Updated import
+import json
 
 class BookscraperPipeline:
     def process_item(self, item, spider):
-
         adapter = ItemAdapter(item)
 
         ## Strip all whitespaces from strings
@@ -58,7 +58,6 @@ class BookscraperPipeline:
 
 
 class SaveToPostgreSQLPipeline:
-
     def __init__(self):
         self.conn = psycopg2.connect(
             host='localhost',
@@ -92,7 +91,6 @@ class SaveToPostgreSQLPipeline:
         self.conn.commit()
 
     def process_item(self, item, spider):
-
         ## Define insert statement
         self.cur.execute(""" 
             INSERT INTO books (
@@ -144,7 +142,30 @@ class SaveToPostgreSQLPipeline:
         return item
 
     def close_spider(self, spider):
-
         ## Close cursor & connection to database 
         self.cur.close()
         self.conn.close()
+
+class KafkaPipeline:
+    def __init__(self, kafka_broker, kafka_topic):
+        self.kafka_producer = KafkaProducer(kafka_broker)
+        self.kafka_topic = kafka_topic
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            kafka_broker=crawler.settings.get('KAFKA_BROKER'),
+            kafka_topic=crawler.settings.get('KAFKA_TOPIC')
+        )
+
+    def open_spider(self, spider):
+        pass
+
+    def close_spider(self, spider):
+        pass
+
+    def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+        message = json.dumps(adapter.asdict())
+        self.kafka_producer.produce(self.kafka_topic, message)
+        return item

@@ -3,12 +3,6 @@ BOT_NAME = 'bookscraper'
 SPIDER_MODULES = ['bookscraper.spiders']
 NEWSPIDER_MODULE = 'bookscraper.spiders'
 
-# Using this if you want to save the data locally
-# FEEDS = {
-#     'booksdata.json': {'format': 'json'},
-# }
-
-# Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 SPIDER_MIDDLEWARES = {
@@ -28,4 +22,8 @@ ITEM_PIPELINES = {
     'bookscraper.pipelines.BookscraperPipeline': 100,
     'bookscraper.pipelines.SaveToPostgreSQLPipeline': 200,
     'bookscraper.pipelines.KafkaPipeline': 300,
+}
+
+EXTENSIONS = {
+    'bookscraper.extensions.EmailSenderExtension': 500,
 }

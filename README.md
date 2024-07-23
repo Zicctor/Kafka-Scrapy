@@ -1,8 +1,4 @@
 # Installation Guide
-If you want to get started with part 9 of the FreeCodeCamp Python Scrapy course. Follow the steps below.
-
-The link to the part 9 article: 
-https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-9-rotating-proxies/
 
 ## Step 1 - Install & activate your python virtual environment
 To install the python virtual environment follow the following instructions below.
@@ -31,8 +27,6 @@ You can signup for an ScrapeOps API key at https://scrapeops.io
 Then add your API key to the settings.py file.
 `SCRAPEOPS_API_KEY = 'YOUR_API_KEY_HERE'` 
 
-
-
 ## Step 4 - Run the project/ Follow the course
 Once the required python modules are installed you should be able to view/run the Python Scrapy Spider with the following command (from within the project folder):
 
@@ -41,8 +35,6 @@ Cd into the project spiders: `cd bookscraper`
 View the project spiders: `scrapy list`
 
 Run the project spider: `scrapy crawl bookspider`
-
-
 
 # Helpful Dubugging 
 If you have issues running the `pip install -r requirements.txt` command this can be due to some things not being up to date on your computer. 

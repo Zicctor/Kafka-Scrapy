@@ -1,6 +1,6 @@
 # Project Description: Scrapy, Kafka, PostgreSQL, and Flask 🍷
 
-![Cover](https://wallpapers.com/images/featured/4k-programming-3hcns7bt28muj7ih.jpg)
+![Cover](https://wallpapercave.com/wp/wp1828905.png)
 
 ## Getting Started 🍸
 

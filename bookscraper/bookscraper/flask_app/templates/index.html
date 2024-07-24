@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapy Spider Control</title>
+    <link rel="icon" type="image/x-icon" href="/static/skull_logo.jpg">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1><span id="flashing-text">Scrapy Spider Control</span></h1>
+    <h4><span id="update-message">*To update results, refresh the page after 2 minutes of running the spider*</span></h4>
+    <div>
+        <button class="button" onclick="startSpider()">Start Spider</button>
+        <button class="button" onclick="refreshPage()">Refresh</button>
+        <button class="button" onclick="deleteAllData()">Delete All Data</button>
+    </div>
+    <div id="notification"></div>
+    <div id="loading" class="loading" style="display: none;"></div> <!-- Loading animation -->
+    <div id="data-box" class="data-box">
+        <h2>PostgreSQL Table Data</h2>
+        <p>Total results: <span id="total-results">0</span></p>
+        <label for="item-count">Show items: </label>
+        <select id="item-count" onchange="loadData()">
+            <option value="50">50</option>
+            <option value="100" selected>100</option>
+            <option value="200">200</option>
+            <option value="1000">1000</option>
+        </select>
+        <label for="sort-order">Sort by ID: </label>
+        <select id="sort-order" onchange="loadData()">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <div id="table-data">
+            <!-- Table data will be loaded here -->
+        </div>
+        <div class="pagination">
+            <button id="prev-page" onclick="prevPage()">Previous</button>
+            <button id="next-page" onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const itemsPerPage = 100;
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `<p>${message}</p>`;
+            setTimeout(() => { notification.innerHTML = ''; }, 5000);
+        }
+
+        function startSpider() {
+            document.getElementById('loading').style.display = 'block'; // Show loading animation
+            fetch('/start_spider', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    showNotification(data.status);
+                    checkStatus(); // Start checking the status immediately
+                });
+        }
+
+        function refreshPage() {
+            window.location.reload();
+        }
+
+        function loadData() {
+            const itemCount = document.getElementById('item-count').value;
+            const sortOrder = document.getElementById('sort-order').value;
+            fetch(`/load_data?limit=${itemCount}&sort_order=${sortOrder}&page=${currentPage}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableDataDiv = document.getElementById('table-data');
+                    const totalResultsSpan = document.getElementById('total-results');
+                    totalResultsSpan.textContent = data.total;
+
+                    let html = '<table><tr><th>ID</th><th>Title</th><th>Price</th><th>Availability</th></tr>';
+                    data.rows.forEach(row => {
+                        html += `<tr><td>${row.id}</td><td>${row.title}</td><td>${row.price}</td><td>${row.availability}</td></tr>`;
+                    });
+                    html += '</table>';
+                    tableDataDiv.innerHTML = html;
+
+                    // Update pagination buttons
+                    document.getElementById('prev-page').disabled = currentPage <= 1;
+                    document.getElementById('next-page').disabled = currentPage >= Math.ceil(data.total / itemsPerPage);
+                });
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData();
+            }
+        }
+
+        function nextPage() {
+            currentPage++;
+            loadData();
+        }
+
+        function deleteAllData() {
+            if (confirm("Are you sure you want to delete all data? This action cannot be undone.")) {
+                fetch('/delete_all_data', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        showNotification(data.status);
+                        loadData();
+                    });
+            }
+        }
+
+        function checkStatus() {
+            fetch('/status')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.spider_running) {
+                        document.getElementById('loading').style.display = 'none'; // Hide loading animation
+                        showNotification('Scraping process complete');
+                        loadData(); // Refresh data when scraping is complete
+                    } else {
+                        setTimeout(checkStatus, 5000); // Check status every 5 seconds
+                    }
+                });
+        }
+
+        // Initial data load
+        loadData();
+    </script>
+</body>
+</html>

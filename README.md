@@ -24,7 +24,7 @@
 
 ### Notion note
 - Check out this link for better instructions.
-https://www.notion.so/Web-Scraping-Project-21b7fad43567476fa3016ed875cbcfb6?pvs=4 🔗
+[Notion note](https://www.notion.so/Web-Scraping-Project-21b7fad43567476fa3016ed875cbcfb6?pvs=4)
 
 ## Conclusion
 By integrating Scrapy, Kafka, PostgreSQL, and Flask, you’ll build a robust data pipeline that scrapes book-related information, stores it in a database, and presents it via a user-friendly web interface. Happy coding! 🚀

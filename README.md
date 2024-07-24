@@ -18,7 +18,7 @@
 - Define columns for book titles, authors, ratings, etc.
 
 ### Flask App 
-- Develop the Flask app within the `Bookscrape` folder.
+- Develop the Flask app within the `Bookscrape/bookscraper/flask_app/app.py` folder.
 - Define routes to retrieve data from PostgreSQL.
 - Implement visualizations using libraries like Plotly or Matplotlib.
 

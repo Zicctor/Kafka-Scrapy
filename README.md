@@ -1,5 +1,5 @@
 # Project Description: Scrapy, Kafka, PostgreSQL, and Flask 🍷
-## Getting Started
+## Getting Started 🍸
 
 ### Install Dependencies 
 - Set up your Python virtual environment within the Scrapy folder.

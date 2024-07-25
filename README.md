@@ -35,6 +35,9 @@ pip install -r requirements.txt
 - Develop the Flask app within the `Bookscrape/bookscraper/flask_app/app.py` folder.
 - Define routes to retrieve data from PostgreSQL.
 - Implement visualizations using libraries like Plotly or Matplotlib.
+```
+python app.py
+```
 
 ### Notion note
 - Check out this link for better instructions.

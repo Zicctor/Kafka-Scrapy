@@ -18,7 +18,9 @@ pip install -r requirements.txt
 ```
 
 ### Install Dependencies 
-- pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
 
 ### Configure Kafka
 - Install Kafka locally or set up a remote Kafka cluster.

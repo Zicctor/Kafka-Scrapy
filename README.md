@@ -5,13 +5,17 @@
 ## Getting Started 🍸
 
 ### Git clone repository
-- git clone https://github.com/your-username/kafka_scrapy_flask.git
-- cd kafka_scrapy_flask
+```
+git clone https://github.com/your-username/kafka_scrapy_flask.git
+cd kafka_scrapy_flask
+```
 
 ### Create Virtual Envrionment
-- python3 -m venv venv
-- source venv/bin/activate
-- pip install -r requirements.txt
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### Install Dependencies 
 - pip install -r requirements.txt

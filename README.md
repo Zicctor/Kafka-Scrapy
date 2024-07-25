@@ -23,13 +23,20 @@ pip install -r requirements.txt
 ```
 
 ### Configure Kafka
-- Install Kafka locally or set up a remote Kafka cluster.
-- Configure Kafka topics and ensure that Scrapy spiders publish data to the appropriate topic.
+- Install Kafka: [Apache Kafka](https://kafka.apache.org/)
+```
+# Run zookeeper
+bin/zookeeper-server-start.sh config/zookeeper.properties
+# Run Kafka
+bin/kafka-server-start.sh config/server.properties
+# Create a topic
+bin/kafka-topics.sh --create --topic webscrapping --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
 
 ### Database Setup
 - Connect to your PostgreSQL database.
-- Create a table (e.g., books) to store scraped data.
-- Define columns for book titles, authors, ratings, etc.
+[PostgreSQL](https://www.postgresql.org/)
+- Create new connection + user
 
 ### Flask App 
 - Develop the Flask app within the `Bookscrape/bookscraper/flask_app/app.py` folder.
@@ -38,10 +45,6 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-
-### Notion note
-- Check out this link for better instructions.
-[Notion note](https://www.notion.so/Web-Scraping-Project-21b7fad43567476fa3016ed875cbcfb6?pvs=4)
 
 ## Conclusion
 By integrating Scrapy, Kafka, PostgreSQL, and Flask, you’ll build a robust data pipeline that scrapes book-related information, stores it in a database, and presents it via a user-friendly web interface. Happy coding! 🚀

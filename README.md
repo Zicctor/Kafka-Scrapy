@@ -3,12 +3,9 @@
 
 ![Cover](https://wallpapercave.com/wp/wp1828905.png)
 
-<!-- Language Toggle Button -->
-<button onclick="toggleLanguage()">Change Language</button>
+[English](#getting-started-english) | [Tiếng Việt](#bắt-đầu-tiếng-việt)
 
-<!-- English Content -->
-<div id="english-content">
-## Getting Started 🍸
+## Getting Started (English) 🍸
 
 ### Git clone repository
 ```
@@ -54,11 +51,8 @@ python app.py
 
 ## Conclusion
 By integrating Scrapy, Kafka, PostgreSQL, and Flask, you’ll build a robust data pipeline that scrapes book-related information, stores it in a database, and presents it via a user-friendly web interface. Happy coding! 🚀
-</div>
 
-<!-- Vietnamese Content (Hidden by default) -->
-<div id="vietnamese-content" style="display:none;">
-## Bắt đầu 🍸
+## Bắt đầu (Tiếng Việt) 🍸
 
 ### Command để clone repo
 ```
@@ -104,18 +98,3 @@ python app.py
 
 ## Kết luận
 Bằng cách tích hợp Scrapy, Kafka, PostgreSQL và Flask, bạn sẽ xây dựng một đường dẫn dữ liệu mạnh mẽ thu thập thông tin liên quan đến sách, lưu trữ trong cơ sở dữ liệu và hiển thị thông qua giao diện web thân thiện với người dùng. Chúc mã hóa vui vẻ! 🚀
-</div>
-
-<script>
-function toggleLanguage() {
-  var englishContent = document.getElementById('english-content');
-  var vietnameseContent = document.getElementById('vietnamese-content');
-  if (englishContent.style.display === 'none') {
-    englishContent.style.display = 'block';
-    vietnameseContent.style.display = 'none';
-  } else {
-    englishContent.style.display = 'none';
-    vietnameseContent.style.display = 'block';
-  }
-}
-</script>

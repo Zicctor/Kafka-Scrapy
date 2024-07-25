@@ -4,9 +4,17 @@
 
 ## Getting Started 🍸
 
+### Git clone repository
+- git clone https://github.com/your-username/kafka_scrapy_flask.git
+- cd kafka_scrapy_flask
+
+### Create Virtual Envrionment
+- python3 -m venv venv
+- source venv/bin/activate
+- pip install -r requirements.txt
+
 ### Install Dependencies 
-- Set up your Python virtual environment within the Scrapy folder.
-- Install Scrapy, Flask, and other necessary packages.
+- pip install -r requirements.txt
 
 ### Configure Kafka
 - Install Kafka locally or set up a remote Kafka cluster.

@@ -51,10 +51,3 @@ python app.py
 
 ## Conclusion
 By integrating Scrapy, Kafka, PostgreSQL, and Flask, you’ll build a robust data pipeline that scrapes book-related information, stores it in a database, and presents it via a user-friendly web interface. Happy coding! 🚀
-</div>
-
-function showVietnamese() {
-  document.getElementById('english-content').style.display = 'none';
-  document.getElementById('vietnamese-content').style.display = 'block';
-}
-</script>

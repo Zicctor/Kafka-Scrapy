@@ -26,8 +26,10 @@ pip install -r requirements.txt
 ```
 
 ### Configure Kafka 
+
 💫 "Apache Kafka is optimized for Linux environments like Ubuntu. Installing it on Windows can introduce complexities and potential performance issues."
 - Install Kafka: [Apache Kafka](https://kafka.apache.org/)
+
 ```
 # Run zookeeper
 bin/zookeeper-server-start.sh config/zookeeper.properties

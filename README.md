@@ -1,55 +1,58 @@
-# Installation Guide
-If you want to get started with part 9 of the FreeCodeCamp Python Scrapy course. Follow the steps below.
 
-The link to the part 9 article: 
-https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-9-rotating-proxies/
+# Project Description: Scrapy, Kafka, PostgreSQL, and Flask 🍷
 
-## Step 1 - Install & activate your python virtual environment
-To install the python virtual environment follow the following instructions below.
+![Cover](https://wallpapercave.com/wp/wp1828905.png)
 
-For Mac: https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-2-scrapy-environment/#setting-up-your-python-virtual-environment-on-macos
+<!-- English Content -->
+<div id="english-content">
+## Getting Started 🍸
 
-For Windows: https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-2-scrapy-environment/#setting-up-your-python-virtual-environment-on-windows 
+### Git clone repository
+```
+git clone https://github.com/your-username/kafka_scrapy_flask.git
+cd kafka_scrapy_flask
+```
 
-For Linux: https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-2-scrapy-environment/#setting-up-your-python-virtual-environment-on-linux
+### Create Virtual Envrionment
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
-Then to activate it so that any new modules that are installed are installed into this virtual environment:
+### Install Dependencies 
+```
+pip install -r requirements.txt
+```
 
-`source venv/bin/activate`
+### Configure Kafka 
 
+💫 "Apache Kafka is optimized for Linux environments like Ubuntu. Installing it on Windows can introduce complexities and potential performance issues."
+- Install Kafka: [Apache Kafka](https://kafka.apache.org/)
 
+```
+# Run zookeeper
+bin/zookeeper-server-start.sh config/zookeeper.properties
 
-## Step 2 - Install the required python modules
-To install the required modules for this python project to run you need to install the required python modules using the following command:
+# Run Kafka
+bin/kafka-server-start.sh config/server.properties
 
-`pip install -r requirements.txt`
+# Create a topic
+bin/kafka-topics.sh --create --topic webscrapping --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
 
+### Database Setup
+- Connect to your PostgreSQL database.
+[PostgreSQL](https://www.postgresql.org/)
+- Create new connection + user
 
-## Step 3 - Add your ScrapeOps API key to the settings.py file
-You can signup for an ScrapeOps API key at https://scrapeops.io
+### Flask App 
+- Develop the Flask app within the `Bookscrape/bookscraper/flask_app/app.py` folder.
+- Define routes to retrieve data from PostgreSQL.
+- Implement visualizations using libraries like Plotly or Matplotlib.
+```
+python app.py
+```
 
-Then add your API key to the settings.py file.
-`SCRAPEOPS_API_KEY = 'YOUR_API_KEY_HERE'` 
-
-
-
-## Step 4 - Run the project/ Follow the course
-Once the required python modules are installed you should be able to view/run the Python Scrapy Spider with the following command (from within the project folder):
-
-Cd into the project spiders: `cd bookscraper`
-
-View the project spiders: `scrapy list`
-
-Run the project spider: `scrapy crawl bookspider`
-
-
-
-# Helpful Dubugging 
-If you have issues running the `pip install -r requirements.txt` command this can be due to some things not being up to date on your computer. 
-
-Running the following may solve some of these issues:
-
-`pip install --upgrade pip`
-
-The following error: `NotADirectoryError: [Errno 20] Not a directory: 'pkg-config'` might be solvable by running:
-`export PKG_CONFIG=/path/to/pkg-config`
+## Conclusion
+By integrating Scrapy, Kafka, PostgreSQL, and Flask, you’ll build a robust data pipeline that scrapes book-related information, stores it in a database, and presents it via a user-friendly web interface. Happy coding! 🚀

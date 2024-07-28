@@ -3,13 +3,6 @@
 
 ![Cover](https://wallpapercave.com/wp/wp1828905.png)
 
-<!-- English Content -->
-<div id="english-content">
-### Getting Started 🍸
-<div style="border-left: 4px solid #e74c3c; background-color: #fdecea; padding: 10px;">
-  <strong>Windows Issues</strong>
-  <p>Kafka is not intended to be run on Windows natively and has several issues that may arise over time.</p>
-</div>
 ### Git clone repository
 ```
 git clone https://github.com/your-username/kafka_scrapy_flask.git

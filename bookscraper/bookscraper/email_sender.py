@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def send_email(subject, body, to_email):
-    from_email = 'scrapynotificationservice@gmail.com'
+    from_email = '' #Replace with your email
     password = '' #Remember to replace with your email password.
 
     msg = MIMEMultipart()
